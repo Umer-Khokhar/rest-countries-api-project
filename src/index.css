@@ -5,3 +5,7 @@
 body {
     background-color: rgba(238, 238, 238, 0.77);
 }
+
+body.dark {
+    background-color: #202d36;
+}
