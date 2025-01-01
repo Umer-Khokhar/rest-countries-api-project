@@ -2,8 +2,10 @@ import {useEffect, useState, createContext} from 'react';
 import {FetchFromData} from "./index.js";
 
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const CountryProvider = createContext()
 
+// eslint-disable-next-line react/prop-types
 export const FetchContext = ({ children }) => {
     const [cards, setCards] = useState([])
     const [filteredCards ,setFilteredCards] = useState([]);
@@ -21,6 +23,11 @@ export const FetchContext = ({ children }) => {
         setRegionFilter(region)
     }
 
+    const resetFilters = () => {
+        setFilteredCards(cards); // Reset to all cards
+        setRegionFilter('');    // Clear region filter
+    };
+
     useEffect(() => {
         FetchFromData("/api_data/data.json")
             .then(data => {
@@ -32,7 +39,7 @@ export const FetchContext = ({ children }) => {
             })
     } ,[])
     return (
-        <CountryProvider.Provider value={{ cards, setCards,  filteredCards, handleFilter, regionFilter, handleRegionChange }}>
+        <CountryProvider.Provider value={{ cards, setCards,  filteredCards, handleFilter, regionFilter, handleRegionChange, resetFilters }}>
             {children}
         </CountryProvider.Provider>
     );
