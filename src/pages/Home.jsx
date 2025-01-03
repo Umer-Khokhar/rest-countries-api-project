@@ -1,5 +1,4 @@
-import { useEffect ,useState, useContext } from 'react';
-import { DynamicCard ,FetchFromData ,InputFilter, CountryProvider } from '../components'
+import { DynamicCard ,InputFilter } from '../components'
 
 const Home = () => {
 
