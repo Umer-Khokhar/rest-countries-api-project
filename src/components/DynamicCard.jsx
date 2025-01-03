@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CountryProvider } from "./FetchContext.jsx";
 
 const DynamicCard = () => {
-  const { filteredCards, cards, regionFilter } = useContext(CountryProvider);
+  const { filteredCards, cards, regionFilter, resetFilters } = useContext(CountryProvider);
 
   let navigate = useNavigate();
 
@@ -17,7 +17,11 @@ const DynamicCard = () => {
     <div className="flex flex-wrap w-full md:justify-between gap-8 items-center my-10 justify-center">
       {cardsToDisplay.map((card, index) => (
         <div
-          onClick={() => handleCardClick(card.alpha3Code.toLowerCase())}
+          onClick={() => {
+            handleCardClick(card.alpha3Code.toLowerCase())
+            resetFilters()
+
+          }}
           className="md:w-[18.5rem] shadow-md rounded-md bg-white cursor-pointer transition-all transform hover:-translate-y-4 w-5/6 dark:bg-navBg dark:text-gray-50"
           key={card.numericCode + index}
         >
